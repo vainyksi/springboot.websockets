@@ -28,6 +28,8 @@ public class WebSocketHandlerImpl implements WebSocketHandler {
     public void handleMessage(@Nonnull final WebSocketSession session,
                               @Nonnull final WebSocketMessage<?> message) throws Exception {
         LOG.info("handleMessage, session: {}, message {}", session, message);
+
+        webSocketSessionService.publishToAll("response for [" + message + "]");
     }
 
     @Override
