@@ -9,6 +9,7 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+import sk.banik.example.springboot.websockets.util.URLs;
 
 @Configuration
 @EnableWebSocket
@@ -19,7 +20,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(@Nonnull final WebSocketHandlerRegistry registry) {
         LOG.info("registerWebSocketHandlers");
-        registry.addHandler(getWebSocketHandler(), "/websocket")
+        registry.addHandler(getWebSocketHandler(), URLs.WS_ENDPOINT_PATH)
                 .addInterceptors(new WsHandshakeInterceptor())
                 .setAllowedOrigins("*");
     }
